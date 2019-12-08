@@ -139,6 +139,7 @@ void Manage::ghivaoFileOut(Node* k, ofstream& fileOut)
 
 void Manage::displayNews(List l)
 {
+	init(l);
 	readNews(l);
 	ofstream fileOut;
 	fileOut.open("../output.txt");
@@ -151,8 +152,9 @@ void Manage::displayNews(List l)
 	cout << "Thanh cong!\n";
 }
 
-void Manage::themVaoDau(List l)
+void Manage::themVaoDau(List& l)
 {
+	init(l);
 	readNews(l);
 	fstream fileIn("../dulieu.txt");
 	News themBao;
@@ -166,8 +168,9 @@ void Manage::themVaoDau(List l)
 	ghiVaoFileIn(l);
 }
 
-void Manage::themVaoCuoi(List l)
+void Manage::themVaoCuoi(List& l)
 {
+	init(l);
 	readNews(l);
 	fstream fileIn("../dulieu.txt");
 	News themBao;
@@ -181,8 +184,9 @@ void Manage::themVaoCuoi(List l)
 	ghiVaoFileIn(l);
 }
 
-void Manage::themVaoViTriBatKy(List l, int vt)
+void Manage::themVaoViTriBatKy(List& l, int vt)
 {
+	init(l);
 	readNews(l);
 	fstream fileIn("../dulieu.txt");
 	News themBao;
@@ -210,18 +214,27 @@ void Manage::themVaoViTriBatKy(List l, int vt)
 
 void Manage::xoaBao(List& l, int vt)
 {
+	init(l);
 	readNews(l);
 	fstream fileIn("../dulieu.txt");
 	int dem = 0;
 	Node* h = new Node;
-	for (Node* k = l.pHead; k != NULL; k = k->pNext)
+	if (vt == 1)
 	{
-		dem++;
-		if (dem == vt)
+		Node* p = l.pHead;
+		l.pHead = l.pHead->pNext;
+		delete p;
+	}
+	else {
+		for (Node* k = l.pHead; k != NULL; k = k->pNext)
 		{
-			h->pNext = k->pNext;
+			dem++;
+			if (dem == vt)
+			{
+				h->pNext = k->pNext;
+			}
+			h = k;
 		}
-		h = k;
 	}
 	fileIn.close();
 	ghiVaoFileIn(l);
@@ -229,6 +242,7 @@ void Manage::xoaBao(List& l, int vt)
 
 void Manage::suaBao(List& l, int vt, int choiceEdit)
 {
+	init(l);
 	readNews(l);
 	fstream fileIn("../dulieu.txt");
 	int dem = 0;
@@ -342,8 +356,9 @@ void Manage::dongTacGia(Node* k, ofstream& fileOut, string TGCT, int& dem)
 		
 	}
 }
-void Manage::timKiem(List l, int choice)
+void Manage::timKiem(List& l, int choice)
 {
+
 	string tenBao, tacGiaChinh, DTG, tenTapChi, loaiTapChi;
 	int dem = 0, year;
 	switch (choice)
@@ -380,6 +395,7 @@ void Manage::timKiem(List l, int choice)
 	default:
 		break;
 	}
+	init(l);
 	readNews(l);
 	ofstream fileOut;
 	fileOut.open("../output.txt");
@@ -437,10 +453,11 @@ void Manage::timKiem(List l, int choice)
 	fileOut.close();
 }
 
-void Manage::sapXep(List l, int n)
+void Manage::sapXep(List& l, int n)
 {
 	int choice, dem;
 	List copyL;
+	init(l);
 	init(copyL);
 	readNews(l);
 	copyL = l;

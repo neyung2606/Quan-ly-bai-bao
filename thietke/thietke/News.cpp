@@ -28,40 +28,50 @@ News::~News()
 }
 void validate(News x)
 {
+	//validate ma bai bao
 	if (x.codenews.length() == 0)
 		throw string("Ma bai bao khong duoc de trong!!");
 	if (x.codenews.length() > 10)
 		throw string("Ma bai bao khong duoc qua 10 ki tu!!");
+	//validate ten bai bao
 	if (x.namenews.length() == 0)
 		throw string("Ten bai bao khong duoc de trong!!");
 	if (x.namenews.length() > 28)
 		throw string("Ten bai bao khong duoc qua 28 ki tu!!");
+	//validate ten tap chi
 	if (x.namemaga.length() == 0)
 		throw string("Ten tap chi khong duoc de trong!!");
 	if (x.namemaga.length() > 15)
 		throw string("Ten tap chi khong duoc qua 15 ki tu!!");
+	//validate loai tap chi
 	if (x.category.length() == 0)
 		throw string("Loai tap chi khong duoc de trong!!");
 	if (x.category.length() > 12)
 		throw string("Loai tap chi khong duoc qua 12 ki tu!!");
+	//validate so xuat ban
 	if (x.edition.length() == 0)
 		throw string("So xuat ban khong duoc de trong!!");
 	if (x.edition.length() > 11)
 		throw string("So xuat ban khong duoc qua 11 ki tu!!");
+	//validate nha xuat ban
 	if (x.publishing.length() == 0)
 		throw string("Tap xuat ban khong duoc de trong!!");
 	if (x.publishing.length() > 12)
 		throw string("Tap xuat ban khong duoc qua 12 ki tu!!");
-	if (x.publishingyear < 1000 && x.publishingyear > 9999)
+	//validate nam xuat ban
+	if (x.publishingyear < 1000 || x.publishingyear > 9999)
 		throw string("Nam xuat ban gom 4 chu so!!");
+	//validate nha san xuat
 	if (x.publishingcom.length() == 0)
 		throw string("So xuat ban khong duoc de trong!!");
 	if (x.publishingcom.length() > 12)
 		throw string("So xuat ban khong duoc qua 12 ki tu!!");
+	//validate tac gia chinh
 	if (x.mainau.length() == 0)
 		throw string("So xuat ban khong duoc de trong!!");
 	if (x.mainau.length() > 13)
 		throw string("So xuat ban khong duoc qua 13 ki tu!!");
+	//validate dong tac gia
 	if (x.sameau.length() == 0)
 		throw string("So xuat ban khong duoc de trong!!");
 	if (x.sameau.length() > 22)
@@ -177,6 +187,7 @@ void News::inputData(News& bao)
 			check = false;
 		}
 	} while (check == false);
+	cin.ignore();
 	do
 	{
 		check = true;

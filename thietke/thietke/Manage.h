@@ -27,13 +27,13 @@ public:
 	void ghiVaoFileIn(List);
 	void ghivaoFileOut(Node*, ofstream&);
 	void displayNews(List);
-	void themVaoDau(List);
-	void themVaoCuoi(List);
-	void themVaoViTriBatKy(List, int);
+	void themVaoDau(List&);
+	void themVaoCuoi(List&);
+	void themVaoViTriBatKy(List&, int);
 	void xoaBao(List&, int);
 	void suaBao(List&, int, int);
-	void timKiem(List l, int choice);
-	void sapXep(List l, int n);
+	void timKiem(List& l, int choice);
+	void sapXep(List& l, int n);
 	void dongTacGia(Node*, ofstream&, string, int&);
 	void Menu();
 };
