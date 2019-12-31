@@ -1,6 +1,7 @@
 #include "Manage.h"
 #include<iostream>
 #include<string>
+#include<Windows.h>
 using namespace std;
 
 void Manage::init(List& l)
@@ -165,7 +166,16 @@ void Manage::themVaoDau(List& l)
 		addHead(l, p);
 	}
 	fileIn.close();
-	ghiVaoFileIn(l);
+	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	int temp;
+	do {
+		cin >> temp;
+	} while (temp > 1 || temp < 0);
+	if (temp == 0)
+	{
+		ghiVaoFileIn(l);
+	}
+	system("cls");
 }
 
 void Manage::themVaoCuoi(List& l)
@@ -181,7 +191,16 @@ void Manage::themVaoCuoi(List& l)
 		addTail(l, p);
 	}
 	fileIn.close();
-	ghiVaoFileIn(l);
+	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	int temp;
+	do {
+		cin >> temp;
+	} while (temp > 1 || temp < 0);
+	if (temp == 0)
+	{
+		ghiVaoFileIn(l);
+	}
+	system("cls");
 }
 
 void Manage::themVaoViTriBatKy(List& l, int vt)
@@ -209,7 +228,16 @@ void Manage::themVaoViTriBatKy(List& l, int vt)
 		}
 	}
 	fileIn.close();
-	ghiVaoFileIn(l);
+	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	int temp;
+	do {
+		cin >> temp;
+	} while (temp > 1 || temp < 0);
+	if (temp == 0)
+	{
+		ghiVaoFileIn(l);
+	}
+	system("cls");
 }
 
 void Manage::xoaBao(List& l, int vt)
@@ -237,7 +265,16 @@ void Manage::xoaBao(List& l, int vt)
 		}
 	}
 	fileIn.close();
-	ghiVaoFileIn(l);
+	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	int temp;
+	do {
+		cin >> temp;
+	} while (temp > 1 || temp < 0);
+	if (temp == 0)
+	{
+		ghiVaoFileIn(l);
+	}
+	system("cls");
 }
 
 void Manage::suaBao(List& l, int vt, int choiceEdit)
@@ -360,7 +397,8 @@ void Manage::timKiem(List& l, int choice)
 {
 
 	string tenBao, tacGiaChinh, DTG, tenTapChi, loaiTapChi;
-	int dem = 0, year;
+	int dem = 0;
+	int year;
 	switch (choice)
 	{
 	case 1:
@@ -554,16 +592,16 @@ void Manage::Menu()
 	int choice, m, pos, posDel, posEdit, choiceAll;
 	do
 	{
-		cout << "====================================" << endl;
-		cout << "||      Phan mem quan ly bao      ||" << endl;
-		cout << "||================================||" << endl;
-		cout << "||0. Thoat                        ||" << endl;
-		cout << "||1. Hien thi du lieu cac bai bao ||" << endl;
-		cout << "||2. Them, sua, xoa               ||" << endl;
-		cout << "||3. Tim kiem theo ten bai bao    ||" << endl;
-		cout << "||4. Filter                       ||" << endl;
-		cout << "||5. Sap xep                      ||" << endl;
-		cout << "====================================" << endl;
+		cout << "=======================================" << endl;
+		cout << "||      Phan mem quan ly bao         ||" << endl;
+		cout << "||===================================||" << endl;
+		cout << "|| 0 ||          Thoat               ||" << endl;
+		cout << "|| 1 || Hien thi du lieu cac bai bao ||" << endl;
+		cout << "|| 2 ||      Them, sua, xoa          ||" << endl;
+		cout << "|| 3 ||  Tim kiem theo ten bai bao   ||" << endl;
+		cout << "|| 4 ||          Filter              ||" << endl;
+		cout << "|| 5 ||          Sap xep             ||" << endl;
+		cout << "=======================================" << endl;
 		cout << "What do you want? Pls choose one: ";
 		cin >> choice;
 		switch (choice) {
@@ -573,23 +611,25 @@ void Manage::Menu()
 			displayNews(l);
 			break;
 		case 2:
+			system("cls");
 			cout << "====================================" << endl;
 			cout << "||      Phan mem quan ly bao      ||" << endl;
 			cout << "||================================||" << endl;
-			cout << "||1. Them bai bao                 ||" << endl;
-			cout << "||2. Sua bai bao                  ||" << endl;
-			cout << "||3. Xoa bai bao                  ||" << endl;
+			cout << "|| 1 ||       Them bai bao        ||" << endl;
+			cout << "|| 2 ||       Sua bai bao         ||" << endl;
+			cout << "|| 3 ||       Xoa bai bao         ||" << endl;
 			cout << "====================================" << endl;
 			cout << "What do you want? Pls choose one: ";
 			cin >> choiceAll;
 			switch (choiceAll) {
 			case 1:
+				system("cls");
 				cout << "====================================" << endl;
 				cout << "||      Phan mem quan ly bao      ||" << endl;
 				cout << "||================================||" << endl;
-				cout << "||1. Them vao dau                 ||" << endl;
-				cout << "||2. Them vao cuoi                ||" << endl;
-				cout << "||3. Them vao vi tri bat ky       ||" << endl;
+				cout << "|| 1 ||      Them vao dau         ||" << endl;
+				cout << "|| 2 ||      Them vao cuoi        ||" << endl;
+				cout << "|| 3 ||  Them vao vi tri bat ky   ||" << endl;
 				cout << "====================================" << endl;
 				cout << "What do you want? Pls choose one: ";
 				cin >> m;
@@ -601,6 +641,7 @@ void Manage::Menu()
 					themVaoCuoi(l);
 					break;
 				case 3:
+					readNews(l);
 					cout << "nhap vi tri can them: " << endl;
 					cin >> pos;
 					themVaoViTriBatKy(l, pos);
@@ -610,21 +651,22 @@ void Manage::Menu()
 				}
 				break;
 			case 2:
+				system("cls");
 				cout << "Nhap vi tri can sua: ";
 				cin >> posEdit;
 				cout << "====================================" << endl;
 				cout << "||      Phan mem quan ly bao      ||" << endl;
 				cout << "||================================||" << endl;
-				cout << "||1. Ma bai bao                   ||" << endl;
-				cout << "||2. Ten bai bao                  ||" << endl;
-				cout << "||3. Ten tap chi                  ||" << endl;
-				cout << "||4. Loai tap chi                 ||" << endl;
-				cout << "||5. So xuat ban                  ||" << endl;
-				cout << "||6. Tap xuat ban                 ||" << endl;
-				cout << "||7. Nam xuat ban                 ||" << endl;
-				cout << "||8. Nha xuat ban                 ||" << endl;
-				cout << "||9. Tac gia chinh                ||" << endl;
-				cout << "||10. Dong tac gia                ||" << endl;
+				cout << "|| 1 ||       Ma bai bao          ||" << endl;
+				cout << "|| 2 ||       Ten bai bao         ||" << endl;
+				cout << "|| 3 ||       Ten tap chi         ||" << endl;
+				cout << "|| 4 ||       Loai tap chi        ||" << endl;
+				cout << "|| 5 ||       So xuat ban         ||" << endl;
+				cout << "|| 6 ||       Tap xuat ban        ||" << endl;
+				cout << "|| 7 ||       Nam xuat ban        ||" << endl;
+				cout << "|| 8 ||       Nha xuat ban        ||" << endl;
+				cout << "|| 9 ||       Tac gia chinh       ||" << endl;
+				cout << "||10 ||       Dong tac gia        ||" << endl;
 				cout << "====================================" << endl;
 				cout << "Nhap muc can chinh sua: ";
 				cin >> m;
@@ -679,14 +721,15 @@ void Manage::Menu()
 			timKiem(l, 1);
 			break;
 		case 4:
+			system("cls");
 			cout << "====================================" << endl;
 			cout << "||      Phan mem quan ly bao      ||" << endl;
 			cout << "||================================||" << endl;
-			cout << "||1. Loc theo nam xuat ban        ||" << endl;
-			cout << "||2. Loc theo tac gia chinh       ||" << endl;
-			cout << "||3. Loc theo dong tac gia        ||" << endl;
-			cout << "||4. Loc theo ten tap chi         ||" << endl;
-			cout << "||5. Loc theo loai tap chi        ||" << endl;
+			cout << "|| 1 ||  Loc theo nam xuat ban    ||" << endl;
+			cout << "|| 2 ||  Loc theo tac gia chinh   ||" << endl;
+			cout << "|| 3 ||  Loc theo dong tac gia    ||" << endl;
+			cout << "|| 4 ||  Loc theo ten tap chi     ||" << endl;
+			cout << "|| 5 ||  Loc theo loai tap chi    ||" << endl;
 			cout << "====================================" << endl;
 			cout << "Moi ban lua chon: ";
 			cin >> m;
@@ -712,11 +755,12 @@ void Manage::Menu()
 			}
 			break;
 		case 5:
+			system("cls");
 			cout << "====================================" << endl;
 			cout << "||      Phan mem quan ly bao      ||" << endl;
 			cout << "||================================||" << endl;
-			cout << "||1. Theo ten bai bao             ||" << endl;
-			cout << "||2. Theo nam                     ||" << endl;
+			cout << "|| 1 ||    Theo ten bai bao       ||" << endl;
+			cout << "|| 2 ||       Theo nam            ||" << endl;
 			cout << "====================================" << endl;
 			cout << "Choose this one: ";
 			cin >> m;

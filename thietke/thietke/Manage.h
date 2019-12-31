@@ -9,14 +9,14 @@ public:
 	struct Node
 	{
 		News data;
-		Node* pNext;
+		Manage::Node* pNext;
 	};
 	struct List
 	{
 		Node* pHead;
 		Node* pTail;
 	};
-	List l;
+	Manage::List l;
 public:
 	void init(List&);
 	Node* makeNode(News);

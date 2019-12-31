@@ -72,8 +72,6 @@ void validate(News x)
 	if (x.mainau.length() > 13)
 		throw string("So xuat ban khong duoc qua 13 ki tu!!");
 	//validate dong tac gia
-	if (x.sameau.length() == 0)
-		throw string("So xuat ban khong duoc de trong!!");
 	if (x.sameau.length() > 22)
 		throw string("So xuat ban khong duoc qua 22 ki tu!!");
 }
@@ -234,6 +232,7 @@ void News::inputData(News& bao)
 		}
 	} while (check == false);
 }
+
 
 void News::swap(News& a, News& b)
 {
