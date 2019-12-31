@@ -1,7 +1,6 @@
 #include "Manage.h"
 #include<iostream>
 #include<string>
-#include<Windows.h>
 using namespace std;
 
 void Manage::init(List& l)
@@ -157,16 +156,14 @@ void Manage::themVaoDau(List& l)
 {
 	init(l);
 	readNews(l);
-	fstream fileIn("../dulieu.txt");
 	News themBao;
+	// nhap bao
 	News::inputData(themBao);
-	if (themBao.codenews.length() != 0 && themBao.namenews.length() != 0 && themBao.namemaga.length() != 0 && themBao.category.length() != 0 && themBao.edition.length() != 0 && themBao.publishing.length() != 0 && themBao.publishingcom.length() != 0 && themBao.mainau.length() != 0 && themBao.sameau.length() != 0 && (themBao.publishingyear != 0 && themBao.publishingyear >= 1000 && themBao.publishingyear <= 9999))
-	{
-		Node* p = makeNode(themBao);
-		addHead(l, p);
-	}
-	fileIn.close();
-	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	// tao node
+	Node* p = makeNode(themBao);
+	addHead(l, p);
+	// luu hay khong luu
+	cout << "Ban co muon luu bai bao khong?(0: luu/1: khong luu): ";
 	int temp;
 	do {
 		cin >> temp;
@@ -182,16 +179,14 @@ void Manage::themVaoCuoi(List& l)
 {
 	init(l);
 	readNews(l);
-	fstream fileIn("../dulieu.txt");
 	News themBao;
+	// nhap bao
 	News::inputData(themBao);
-	if (themBao.codenews.length() != 0 && themBao.namenews.length() != 0 && themBao.namemaga.length() != 0 && themBao.category.length() != 0 && themBao.edition.length() != 0 && themBao.publishing.length() != 0 && themBao.publishingcom.length() != 0 && (themBao.publishingyear != 0 && themBao.publishingyear >= 1000 && themBao.publishingyear <= 9999))
-	{
-		Node* p = makeNode(themBao);
-		addTail(l, p);
-	}
-	fileIn.close();
-	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	// tao node
+	Node* p = makeNode(themBao);
+	addTail(l, p);
+	// luu hay khong luu
+	cout << "Ban co muon luu bai bao khong?(0: luu/1: khong luu): ";
 	int temp;
 	do {
 		cin >> temp;
@@ -207,28 +202,24 @@ void Manage::themVaoViTriBatKy(List& l, int vt)
 {
 	init(l);
 	readNews(l);
-	fstream fileIn("../dulieu.txt");
 	News themBao;
 	News::inputData(themBao);
-	if (themBao.codenews.length() != 0 && themBao.namenews.length() != 0 && themBao.namemaga.length() != 0 && themBao.category.length() != 0 && themBao.edition.length() != 0 && themBao.publishing.length() != 0 && themBao.publishingcom.length() != 0 && (themBao.publishingyear != 0 && themBao.publishingyear >= 1000 && themBao.publishingyear <= 9999))
+	int dem = 0;
+	Node* h = new Node;
+	for (Node* k = l.pHead; k != NULL; k = k->pNext)
 	{
-		int dem = 0;
-		Node* h = new Node;
-		for (Node* k = l.pHead; k != NULL; k = k->pNext)
+		dem++;
+		if (dem == vt)
 		{
-			dem++;
-			if (dem == vt)
-			{
-				Node* p = makeNode(themBao);
-				p->pNext = k;
-				h->pNext = p;
-				break;
-			}
-			h = k;
+			Node* p = makeNode(themBao);
+			p->pNext = k;
+			h->pNext = p;
+			break;
 		}
+		h = k;
 	}
-	fileIn.close();
-	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	// luu hay khong luu
+	cout << "Ban co muon luu bai bao khong?(0: luu/1: khong luu): ";
 	int temp;
 	do {
 		cin >> temp;
@@ -244,7 +235,6 @@ void Manage::xoaBao(List& l, int vt)
 {
 	init(l);
 	readNews(l);
-	fstream fileIn("../dulieu.txt");
 	int dem = 0;
 	Node* h = new Node;
 	if (vt == 1)
@@ -264,8 +254,8 @@ void Manage::xoaBao(List& l, int vt)
 			h = k;
 		}
 	}
-	fileIn.close();
-	cout << "Ban co muon luu bai bao nay khong?(0: luu/1: khong luu): ";
+	// luu hay khong luu
+	cout << "Ban co muon luu bai bao khong?(0: luu/1: khong luu): ";
 	int temp;
 	do {
 		cin >> temp;
@@ -281,7 +271,6 @@ void Manage::suaBao(List& l, int vt, int choiceEdit)
 {
 	init(l);
 	readNews(l);
-	fstream fileIn("../dulieu.txt");
 	int dem = 0;
 	string codenews, namenews, namemaga, category, edition, publishing, publishingcom, mainau, sameau;
 	int publishingyear;
@@ -357,8 +346,17 @@ void Manage::suaBao(List& l, int vt, int choiceEdit)
 			}
 		}
 	}
-	fileIn.close();
-	ghiVaoFileIn(l);
+	// luu hay khong luu
+	cout << "Ban co muon luu bai bao khong?(0: luu/1: khong luu): ";
+	int temp;
+	do {
+		cin >> temp;
+	} while (temp > 1 || temp < 0);
+	if (temp == 0)
+	{
+		ghiVaoFileIn(l);
+	}
+	system("cls");
 }
 void Manage::dongTacGia(Node* k, ofstream& fileOut, string TGCT, int& dem)
 {
@@ -397,8 +395,7 @@ void Manage::timKiem(List& l, int choice)
 {
 
 	string tenBao, tacGiaChinh, DTG, tenTapChi, loaiTapChi;
-	int dem = 0;
-	int year;
+	int dem = 0, year;
 	switch (choice)
 	{
 	case 1:
@@ -489,6 +486,7 @@ void Manage::timKiem(List& l, int choice)
 	if (dem == 0) cout << "Khong co bai bao ma ban tim kiem!" << endl;
 	else cout << "Da tim thay " << dem << " bai bao ban can!" << endl;
 	fileOut.close();
+	system("cls");
 }
 
 void Manage::sapXep(List& l, int n)
@@ -584,6 +582,7 @@ void Manage::sapXep(List& l, int n)
 		ghivaoFileOut(k, fileOut);
 	}
 	fileOut.close();
+	system("cls");
 }
 
 void Manage::Menu()
@@ -635,18 +634,21 @@ void Manage::Menu()
 				cin >> m;
 				switch (m) {
 				case 1:
+					system("cls");
 					themVaoDau(l);
 					break;
 				case 2:
+					system("cls");
 					themVaoCuoi(l);
 					break;
 				case 3:
-					readNews(l);
+					system("cls");
 					cout << "nhap vi tri can them: " << endl;
 					cin >> pos;
 					themVaoViTriBatKy(l, pos);
 					break;
 				default:
+					system("cls");
 					break;
 				}
 				break;
@@ -673,33 +675,43 @@ void Manage::Menu()
 				switch (m)
 				{
 				case 1:
+					system("cls");
 					suaBao(l, posEdit, 1);
 					break;
 				case 2:
+					system("cls");
 					suaBao(l, posEdit, 2);
 					break;
 				case 3:
+					system("cls");
 					suaBao(l, posEdit, 3);
 					break;
 				case 4:
+					system("cls");
 					suaBao(l, posEdit, 4);
 					break;
 				case 5:
+					system("cls");
 					suaBao(l, posEdit, 5);
 					break;
 				case 6:
+					system("cls");
 					suaBao(l, posEdit, 6);
 					break;
 				case 7:
+					system("cls");
 					suaBao(l, posEdit, 7);
 					break;
 				case 8:
+					system("cls");
 					suaBao(l, posEdit, 8);
 					break;
 				case 9:
+					system("cls");
 					suaBao(l, posEdit, 9);
 					break;
 				case 10:
+					system("cls");
 					suaBao(l, posEdit, 10);
 					break;
 				default:
@@ -708,6 +720,7 @@ void Manage::Menu()
 				}
 				break;
 			case 3:
+				system("cls");
 				cout << "Nhap vi tri can xoa: ";
 				cin >> posDel;
 				xoaBao(l, posDel);
@@ -718,6 +731,7 @@ void Manage::Menu()
 			}
 			break;
 		case 3:
+			system("cls");
 			timKiem(l, 1);
 			break;
 		case 4:
@@ -736,18 +750,23 @@ void Manage::Menu()
 			switch (m)
 			{
 			case 1:
+				system("cls");
 				timKiem(l, 6);
 				break;
 			case 2:
+				system("cls");
 				timKiem(l, 2);
 				break;
 			case 3:
+				system("cls");
 				timKiem(l, 3);
 				break;
 			case 4:
+				system("cls");
 				timKiem(l, 4);
 				break;
 			case 5:
+				system("cls");
 				timKiem(l, 5);
 				break;
 			default:
@@ -767,9 +786,11 @@ void Manage::Menu()
 			switch (m)
 			{
 			case 1:
+				system("cls");
 				sapXep(l, 1);
 				break;
 			case 2:
+				system("cls");
 				sapXep(l, 2);
 				break;
 			default:
