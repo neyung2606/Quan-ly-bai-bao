@@ -209,7 +209,7 @@ void Manage::themVaoViTriBatKy(List& l, int vt)
 	for (Node* k = l.pHead; k != NULL; k = k->pNext)
 	{
 		dem++;
-		if (dem == vt)
+		if (dem == vt)	
 		{
 			Node* p = makeNode(themBao);
 			p->pNext = k;
@@ -239,9 +239,9 @@ void Manage::xoaBao(List& l, int vt)
 	Node* h = new Node;
 	if (vt == 1)
 	{
-		Node* p = l.pHead;
+		h = l.pHead;
 		l.pHead = l.pHead->pNext;
-		delete p;
+		delete h;
 	}
 	else {
 		for (Node* k = l.pHead; k != NULL; k = k->pNext)
@@ -391,6 +391,39 @@ void Manage::dongTacGia(Node* k, ofstream& fileOut, string TGCT, int& dem)
 		
 	}
 }
+void Manage::searchMainAu(Node* k, ofstream& fileOut, string TGCT, int& dem)
+{
+	string tacgia;
+	int dodai = k->data.mainau.length();
+	for (int i = 0; i < dodai; i++)
+	{
+		if (k->data.mainau[i] == '-')
+		{
+			if (tacgia == TGCT)
+			{
+				dem++;
+				ghivaoFileOut(k, fileOut);
+			}
+			else
+			{
+				tacgia = "";
+			}
+		}
+		else
+		{
+			tacgia += k->data.mainau[i];
+			if (i == dodai - 1)
+			{
+				if (tacgia == TGCT)
+				{
+					dem++;
+					ghivaoFileOut(k, fileOut);
+				}
+			}
+		}
+
+	}
+}
 void Manage::timKiem(List& l, int choice)
 {
 
@@ -449,11 +482,7 @@ void Manage::timKiem(List& l, int choice)
 			}
 			break;
 		case 2:
-			if (k->data.mainau == tacGiaChinh)
-			{
-				dem++;
-				ghivaoFileOut(k, fileOut);
-			}
+			searchMainAu(k, fileOut, tacGiaChinh, dem);
 			break;
 		case 3:
 			dongTacGia(k, fileOut, DTG, dem);

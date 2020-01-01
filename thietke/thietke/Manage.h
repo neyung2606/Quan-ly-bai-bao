@@ -35,5 +35,6 @@ public:
 	void timKiem(List& l, int choice);
 	void sapXep(List& l, int n);
 	void dongTacGia(Node*, ofstream&, string, int&);
+	void searchMainAu(Node*, ofstream&, string, int&);
 	void Menu();
 };
